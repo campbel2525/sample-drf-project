@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from .models import User
 from .requests import UserUpdateRequest
 from .responses import UserResponse
-from django.db import transaction
 from django.shortcuts import get_object_or_404
 
 

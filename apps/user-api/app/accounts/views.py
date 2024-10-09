@@ -86,7 +86,7 @@ class AccountView(viewsets.ViewSet):
         methods=["post"],
         url_path="signup",
         name="accounts_signup",
-        authentication_classes=[AllowAny],
+        authentication_classes=[],
         permission_classes=[AllowAny],
     )
     def signup(self, request):
@@ -123,7 +123,9 @@ class AccountView(viewsets.ViewSet):
         auth_user.name = request.data.get("name")
 
         if request.data.get("password"):
-            auth_user.password = auth_model().password_to_hash(request.data.get("password"))
+            auth_user.password = auth_model().password_to_hash(
+                request.data.get("password")
+            )
         auth_user.save()
 
         serializer = MeResponse(auth_user)

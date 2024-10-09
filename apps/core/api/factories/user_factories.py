@@ -22,14 +22,3 @@ class UserFactory(DjangoModelFactory):
     address2 = factory.Faker("secondary_address")
     tel1 = factory.Faker("numerify", text="080-####-####")
     tel2 = factory.Faker("numerify", text="080-####-####")
-
-
-class UserMessageCountFactory(DjangoModelFactory):
-
-    class Meta:
-        model = apps.get_model("users.UserMessageCount")
-        skip_postgeneration_save = True
-
-    user = factory.SubFactory(UserFactory)
-    total_count = factory.Faker("random_int", min=0, max=1000)
-    this_month_count = factory.Faker("random_int", min=0, max=100)
