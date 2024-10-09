@@ -1,0 +1,54 @@
+get:
+  tags:
+    - users
+  summary: 詳細
+  description: description
+  operationId: users-retrieve
+  security:
+    - Authentication: []
+  parameters:
+    - $ref: "../requests/parameters/path.yml#id"
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/resources/models/user.yml"
+
+put:
+  tags:
+    - users
+  summary: 更新
+  description: description
+  operationId: users-update
+  security:
+    - Authentication: []
+  parameters:
+    - $ref: "../requests/parameters/path.yml#id"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../requests/resources/users-update.yml"
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/resources/models/user.yml"
+
+delete:
+  tags:
+    - users
+  summary: 削除
+  description: description
+  operationId: users-destroy
+  parameters:
+    - $ref: "../requests/parameters/path.yml#id"
+  security:
+    - Authentication: []
+  responses:
+    "204":
+      description: 正常
