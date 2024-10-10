@@ -2,7 +2,7 @@ import request from '@/api/base-api'
 import { localStorageKeys } from '@/config/settings'
 import type { LoginRequest } from '@/types/requests/account-requests'
 import type { SignUpRequest } from '@/types/requests/account-requests'
-import type { AccountMeResponse } from '@/types/responses/account-responses'
+import type { User } from '@/types/models'
 import type { TokenResponse } from '@/types/responses/account-responses'
 import type { ApiResponse } from '@/types/responses/base-responses'
 
@@ -42,7 +42,7 @@ export const loginApi = async (
   }
 }
 
-export const meApi = async (): Promise<ApiResponse<AccountMeResponse>> => {
+export const meApi = async (): Promise<ApiResponse<User>> => {
   try {
     const result = await request({
       url: `/api/v1/accounts/me/`,

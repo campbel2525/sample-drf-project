@@ -1,9 +1,16 @@
 import hashlib
 
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
+from app.core.base_models.base_auth_user import CustomUserManager
 
-class BaseAdminUserModel(models.Model):
+
+class BaseAdminUserModel(AbstractBaseUser):
+
+    objects = CustomUserManager()
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
 
     class Meta:
         abstract = True

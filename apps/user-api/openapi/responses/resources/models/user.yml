@@ -6,9 +6,6 @@ required:
   - "created_at"
   - "updated_at"
 properties:
-  id:
-    type: integer
-    example: 1
   email:
     type: string
     example: "admin1@example.com"

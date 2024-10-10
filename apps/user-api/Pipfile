@@ -11,6 +11,10 @@ django-environ = "*"
 pytz = "*"
 django-cors-headers = "*"
 pyjwt = "*"
+tiktoken = "*"
+langchain = "*"
+langchain-openai = "*"
+openai = "*"
 
 [dev-packages]
 flake8 = "*"

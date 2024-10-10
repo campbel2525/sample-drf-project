@@ -1,10 +1,10 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
 from .models import User
 from .requests import UserUpdateRequest
 from .responses import UserResponse
-from django.shortcuts import get_object_or_404
 
 
 class UserView(viewsets.ViewSet):
@@ -36,5 +36,4 @@ class UserView(viewsets.ViewSet):
     def destroy(self, request, pk):
         user = get_object_or_404(User, id=pk)
         user.delete()
-
         return Response(status=status.HTTP_204_NO_CONTENT)

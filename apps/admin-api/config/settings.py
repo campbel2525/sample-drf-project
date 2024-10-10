@@ -52,10 +52,10 @@ INSTALLED_APPS = [
     "corsheaders",
     # 作成したアプリを追加していく
     "app.hc.apps.HcConfig",
+    "app.core.apps.CoreConfig",
     "app.accounts.apps.AccountConfig",
     "app.admin_users.apps.AdminUserConfig",
     "app.users.apps.UserConfig",
-    "app.core.apps.CoreConfig",
 ]
 
 MIDDLEWARE = [
@@ -205,10 +205,6 @@ AWS: Any = {
 
 
 # デバッグ
-# manageコマンド経由の際にはdebugpyを起動しないようにする。
-# env.str("IS_MANAGE_COMMAND", default="") == "1"
-# とやってもなぜかしっかり動く。不明。。
-# if DEBUG and env.str("IS_MANAGE_COMMAND", default="") != "1":
 if DEBUG and os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):  # noqa
     import debugpy
 
@@ -220,3 +216,5 @@ AUTH_MODEL_NAME = "AdminUser"
 JWT_ACCESS_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 7
 JWT_REFRESH_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 14
 JWT_ALGORITHM = "HS256"
+
+AUTH_USER_MODEL = "admin_users.AdminUser"

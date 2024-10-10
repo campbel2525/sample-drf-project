@@ -7,7 +7,6 @@ class TokenResponse(serializers.Serializer):
 
 
 class MeResponse(serializers.Serializer):
-    id = serializers.IntegerField()
     email = serializers.CharField()
     name = serializers.CharField()
     created_at = serializers.DateTimeField()

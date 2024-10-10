@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     "corsheaders",
     # 作成したアプリを追加していく
     "app.hc.apps.HcConfig",
-    "app.accounts.apps.AccountConfig",
     "app.core.apps.CoreConfig",
+    "app.accounts.apps.AccountConfig",
     "app.users.apps.UserConfig",
 ]
 
@@ -204,10 +204,6 @@ AWS: Any = {
 
 
 # デバッグ
-# manageコマンド経由の際にはdebugpyを起動しないようにする。
-# env.str("IS_MANAGE_COMMAND", default="") == "1"
-# とやってもなぜかしっかり動く。不明。。
-# if DEBUG and env.str("IS_MANAGE_COMMAND", default="") != "1":
 if DEBUG and os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):  # noqa
     import debugpy
 
@@ -217,10 +213,18 @@ OPENAI = {
     "OPENAI_API_KEY": env.str("OPENAI_API_KEY", default=""),
 }
 
-
 # 認証
 AUTH_APP_NAME = "users"
 AUTH_MODEL_NAME = "User"
 JWT_ACCESS_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 7
 JWT_REFRESH_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 14
 JWT_ALGORITHM = "HS256"
+
+# openai
+OPENAI_API_KEY = env.str("OPENAI_API_KEY", default="")
+OPENAI_URL = env.str("OPENAI_URL", default="")
+AI_MODEL_NAME = "gpt-4o"
+AI_MODEL_VERSION = "2024-07-18"
+AI_MODEL_PROVIDER = "openai"
+
+AUTH_USER_MODEL = "users.User"
