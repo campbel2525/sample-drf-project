@@ -1,8 +1,8 @@
 import request from '@/api/base-api'
 import { localStorageKeys } from '@/config/settings'
+import type { User } from '@/types/models'
 import type { LoginRequest } from '@/types/requests/account-requests'
 import type { SignUpRequest } from '@/types/requests/account-requests'
-import type { User } from '@/types/models'
 import type { TokenResponse } from '@/types/responses/account-responses'
 import type { ApiResponse } from '@/types/responses/base-responses'
 
