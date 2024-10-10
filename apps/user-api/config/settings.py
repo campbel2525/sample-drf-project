@@ -44,7 +44,9 @@ ALLOWED_HOSTS: List[str] = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
+    "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.sessions",
     "django.contrib.messages",
     "rest_framework",
     "corsheaders",
@@ -222,16 +224,3 @@ AUTH_MODEL_NAME = "User"
 JWT_ACCESS_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 7
 JWT_REFRESH_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 14
 JWT_ALGORITHM = "HS256"
-
-JWT_AUTH_MIDDLEWARE_EXCLUDE_PATHS = [
-    "/api/v1/accounts/login/",
-    "/api/v1/accounts/refresh/",
-    "/api/v1/accounts/signup/",
-]
-
-
-OPENAI_API_KEY = env.str("OPENAI_API_KEY", default="")
-OPENAI_URL = env.str("OPENAI_URL", default="")
-AI_MODEL_NAME = "gpt-4o"
-AI_MODEL_VERSION = "2024-07-18"
-AI_MODEL_PROVIDER = "openai"

@@ -44,7 +44,9 @@ ALLOWED_HOSTS: List[str] = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
+    "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.sessions",
     "django.contrib.messages",
     "rest_framework",
     "corsheaders",
@@ -218,8 +220,3 @@ AUTH_MODEL_NAME = "AdminUser"
 JWT_ACCESS_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 7
 JWT_REFRESH_TOKEN_EXPIRES_SECONDS = 3600 * 24 * 14
 JWT_ALGORITHM = "HS256"
-
-JWT_AUTH_MIDDLEWARE_EXCLUDE_PATHS = [
-    "/api/v1/accounts/login/",
-    "/api/v1/accounts/refresh/",
-]
