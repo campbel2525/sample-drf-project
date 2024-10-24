@@ -17,4 +17,4 @@ export const REFRESH_TOKEN_NAME = 'refresh_token'
 export const ACCESS_TOKEN_UPDATE_BUFFER = 60 * 60 * 24 // 1日
 
 // 認証が必要ないパス
-export const authNotRequiredPaths = ['/accounts/login', '/accounts/signup']
+export const authNotRequiredPaths = ['/accounts/login', '/accounts/signup', '/']
