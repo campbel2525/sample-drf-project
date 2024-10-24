@@ -55,8 +55,6 @@ INSTALLED_APPS = [
     "app.accounts.apps.AccountConfig",
     "app.admin_users.apps.AdminUserConfig",
     "app.users.apps.UserConfig",
-    "app.orders.apps.OrderConfig",
-    "app.chats.apps.ChatConfig",
     "app.core.apps.CoreConfig",
 ]
 

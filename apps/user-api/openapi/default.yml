@@ -40,13 +40,3 @@ paths:
     $ref: "endpoints/accounts-signup.yml"
   /api/v1/accounts/update/:
     $ref: "endpoints/accounts-update.yml"
-
-  # chat-rooms
-  /api/v1/chat-rooms/:
-    $ref: "endpoints/chat-rooms.yml"
-  /api/v1/chat-rooms/{id}/:
-    $ref: "endpoints/chat-rooms-id.yml"
-
-  # chat-messages
-  /api/v1/chat-rooms/{chat_room_uuid}/chat-messages/:
-    $ref: "endpoints/chat-messages.yml"

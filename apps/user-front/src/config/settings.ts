@@ -8,8 +8,6 @@ export const frontPaths = {
   login: '/accounts/login',
   signUp: '/accounts/signup',
   users: '/users',
-  chatRooms: '/chat-rooms',
-  chatMessages: '/chat-messages',
 }
 
 export const loginPagePath = frontPaths.login

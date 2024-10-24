@@ -3,9 +3,3 @@ id:
   name: id
   type: integer
   example: 1
-
-chat_room_uuid:
-  in: path
-  name: chat_room_uuid
-  type: string
-  example: "3f86a01a-8fab-4905-b188-092a16fb5ec6"

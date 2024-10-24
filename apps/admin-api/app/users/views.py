@@ -3,8 +3,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from app.chats.models import ChatRoom
-
 from .models import User
 from .requests import UserUpdateRequest
 from .responses import UserResponse
@@ -38,18 +36,5 @@ class UserView(viewsets.ViewSet):
 
     def destroy(self, request, pk):
         user = get_object_or_404(User, id=pk)
-        with transaction.atomic():
-            chat_rooms = ChatRoom.objects.filter(user=user).all()
-            for chat_room in chat_rooms:
-                chat_room.chat_messages.all().delete()
-            chat_rooms.delete()
-
-            user.user_message_count.delete()
-
-            for payment in user.payments.all():
-                payment.user_id = None
-                payment.save()
-
-            user.delete()
-
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

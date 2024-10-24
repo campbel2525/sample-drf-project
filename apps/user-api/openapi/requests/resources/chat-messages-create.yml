@@ -1,7 +1,0 @@
-type: object
-required:
-  - messege
-properties:
-  message:
-    type: string
-    example: "こんにちは"
