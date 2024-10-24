@@ -1,0 +1,21 @@
+
+put:
+  tags:
+    - accounts
+  summary: 更新
+  description: description
+  operationId: accounts-update
+  security:
+    - Authentication: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../requests/resources/accounts-update.yml"
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/resources/accounts-update.yml"
