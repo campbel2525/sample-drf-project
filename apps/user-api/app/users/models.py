@@ -1,6 +1,9 @@
 from django.db import connection
 
-from app.core.base_models.base_user_models import BaseUserModel
+from app.core.base_models.base_user_models import (
+    BaseUserMessageCountModel,
+    BaseUserModel,
+)
 
 
 class User(BaseUserModel):
@@ -21,3 +24,10 @@ class User(BaseUserModel):
 
         with connection.cursor() as cursor:
             cursor.execute(sql, [self.id])
+
+
+class UserMessageCount(BaseUserMessageCountModel):
+
+    class Meta:
+        db_table = "user_message_counts"
+        managed = False

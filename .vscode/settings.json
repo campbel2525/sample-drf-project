@@ -41,11 +41,9 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // // ESLintの自動修正を保存時に適用
-  // "editor.codeActionsOnSave": {
-  //   "source.fixAll.eslint": true
-  // },
 
   // admin-frontとuser-frontで共通のtsdkが指定されていることに注意
-  "typescript.tsdk": "apps/admin-front/node_modules/typescript/lib"
+  "typescript.tsdk": "apps/admin-front/node_modules/typescript/lib",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

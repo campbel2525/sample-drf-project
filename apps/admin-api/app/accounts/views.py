@@ -14,6 +14,7 @@ from app.core.authentications.custom_jwt_authentications import CustomJWTAuthent
 
 from .requests import LoginRequest, RefreshRequest
 from .responses import MeResponse, TokenResponse
+from rest_framework.exceptions import AuthenticationFailed
 
 
 class AccountView(viewsets.ViewSet):
@@ -31,10 +32,10 @@ class AccountView(viewsets.ViewSet):
 
         auth_user = auth_model().objects.filter(email=request.data.get("email")).first()
         if auth_user is None:
-            return HttpResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED)
+            raise AuthenticationFailed("ユーザー名もしくはパスワードが間違っています。")
 
         if not auth_user.check_password(request.data.get("password")):
-            return HttpResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED)
+            raise AuthenticationFailed("ユーザー名もしくはパスワードが間違っています。")
 
         data = {
             "access_token": create_token(auth_user, "access_token"),

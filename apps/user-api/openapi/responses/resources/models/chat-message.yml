@@ -1,0 +1,44 @@
+description: 正常系
+type: object
+required:
+  # - "id"
+  - "chat_room"
+  - "message"
+  - "message_token"
+  - "role"
+  - "ai_model_name"
+  - "ai_model_version"
+  - "ai_model_provider"
+  - "created_at"
+  - "updated_at"
+properties:
+  # id:
+  #   type: integer
+  #   example: 1
+  # chat_room:
+  #   type: integer
+  #   example: 1
+  message:
+    type: string
+    example: "こんにちは"
+  message_token:
+    type: integer
+    example: 1
+  role:
+    type: string
+    example: "human"
+  ai_model_name:
+    type: string
+    example: "gpt-3.5-turbo"
+  ai_model_version:
+    type: string
+    example: "1.0"
+  ai_model_provider:
+    type: string
+    example: "openai"
+  created_at:
+    type: string
+    example: "2020-01-01 00:00:00.000000"
+  updated_at:
+    type: string
+    example: "2020-01-01 00:00:00.000000"

@@ -1,104 +1,42 @@
-'use client'
-
 import { Box } from '@chakra-ui/react'
-import { Table, Tbody, Td, Tr } from '@chakra-ui/react'
-import { Button } from '@chakra-ui/react'
-import { useParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
 
-import { retrieveApi } from '@/api/user-api'
-import Loading from '@/components/Loading'
+import NotFound from '@/components/common/NotFound'
+import ServerError from '@/components/common/ServerError'
+import UserRetrieveComponent from '@/components/fetch/UserRetrieveComponent'
 import ErrorMessage from '@/components/messages/ErrorMessage'
 import ValidationErrorMessages from '@/components/messages/ValidationErrorMessages'
-import { frontPaths } from '@/config/settings'
-import type { User } from '@/types/models'
-import type { ApiResponse } from '@/types/responses/base-responses'
-import type { validationErrorDetail } from '@/types/responses/base-responses'
-import { loginCheck } from '@/utils/auth'
+import { fetchClient } from '@/utils/backend-client'
 
-export default function UserDetailPage() {
-  const router = useRouter()
-  const params = useParams()
-  const id = params.id
+export default async function UserRetrievePage({ params }: { params: { id: string } }) {
+  const { id } = params
 
-  const [errorMessage, setErrorMessage] = useState<string>('')
-  const [validationErrors, setValidationErrors] = useState<validationErrorDetail[]>([])
-  const [result, setResult] = useState<ApiResponse<User>>()
+  let validationError = {}
+  let errorMessage = ''
 
-  const fetchData = async (id: number) => {
-    const result = await retrieveApi(id)
-    setValidationErrors(result.validationErrors ?? [])
-    setErrorMessage(result.errorMessage || '')
-    setResult(result)
-  }
-
-  useEffect(() => {
-    const performAsyncOperations = async () => {
-      await loginCheck(router)
-      if (id) {
-        await fetchData(Number(id))
-      }
+  const response = await fetchClient('GET', `/api/users/${id}/`)
+  const responseData = await response.json()
+  if (!response.ok) {
+    if (response.status === 400) {
+      validationError = responseData
     }
-
-    performAsyncOperations()
-  }, [id, router])
-
-  if (!result) {
-    return <Loading />
+    if (response.status === 404) {
+      return <NotFound />
+    }
+    if (response.status === 500) {
+      return <ServerError />
+    }
+    if (responseData?.detail) {
+      errorMessage = responseData.detail
+    }
   }
 
   return (
     <>
-      {result.data && (
-        <>
-          <Table variant="simple">
-            <Tbody>
-              <Tr>
-                <Td>id</Td>
-                <Td>{result.data.id}</Td>
-              </Tr>
-              <Tr>
-                <Td>Email</Td>
-                <Td>{result.data.email}</Td>
-              </Tr>
-              <Tr>
-                <Td>名前</Td>
-                <Td>{result.data.name}</Td>
-              </Tr>
-              <Tr>
-                <Td>アクティブ状態</Td>
-                <Td>{result.data.is_active ? '有効' : '無効'}</Td>
-              </Tr>
-              <Tr>
-                <Td>作成日</Td>
-                <Td>{result.data.created_at}</Td>
-              </Tr>
-              <Tr>
-                <Td>更新日</Td>
-                <Td>{result.data.updated_at}</Td>
-              </Tr>
-            </Tbody>
-          </Table>
-
-          <Box p={8} maxWidth="400px" mx="auto" display="flex" justifyContent="center">
-            <Button
-              colorScheme="blue"
-              onClick={() => {
-                if (result.data) {
-                  router.push(`${frontPaths.users}/${result.data.id}/edit`)
-                }
-              }}
-            >
-              編集へ
-            </Button>
-          </Box>
-        </>
-      )}
+      {responseData && <UserRetrieveComponent user={responseData} />}
 
       <Box p={8} maxWidth="400px">
-        {validationErrors.length > 0 && (
-          <ValidationErrorMessages validationErrors={validationErrors} />
+        {Object.keys(validationError).length > 0 && (
+          <ValidationErrorMessages validationError={validationError} />
         )}
         {errorMessage && <ErrorMessage message={errorMessage} />}
       </Box>

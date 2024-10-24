@@ -52,10 +52,12 @@ INSTALLED_APPS = [
     "corsheaders",
     # 作成したアプリを追加していく
     "app.hc.apps.HcConfig",
-    "app.core.apps.CoreConfig",
     "app.accounts.apps.AccountConfig",
     "app.admin_users.apps.AdminUserConfig",
     "app.users.apps.UserConfig",
+    "app.orders.apps.OrderConfig",
+    "app.chats.apps.ChatConfig",
+    "app.core.apps.CoreConfig",
 ]
 
 MIDDLEWARE = [
@@ -180,6 +182,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "app.core.authentications.custom_jwt_authentications.CustomJWTAuthentication",
     ),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
     ],

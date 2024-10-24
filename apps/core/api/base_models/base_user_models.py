@@ -78,3 +78,37 @@ class BaseUserModel(AbstractBaseUser):
     @classmethod
     def password_to_hash(cls, password: str) -> str:
         return hashlib.sha512(password.encode("utf-8")).hexdigest()
+
+
+class BaseUserMessageCountModel(models.Model):
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return str(self.id)
+
+    id = models.BigAutoField(
+        primary_key=True,
+    )
+    user = models.OneToOneField(
+        "users.User",
+        on_delete=models.RESTRICT,
+        related_name="user_message_count",
+    )
+    total_count = models.BigIntegerField(
+        null=False,
+        db_comment="メッセージ数",
+    )
+    this_month_count = models.BigIntegerField(
+        null=False,
+        db_comment="メッセージ数",
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        db_comment="作成日時",
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        db_comment="更新日時",
+    )

@@ -62,8 +62,8 @@ services:
     depends_on:
       - db
     ports:
-      - "0.0.0.0:9001:9000" # デバッグ用
-      - "0.0.0.0:8001:8000" # webサーバー
+      - "0.0.0.0:9001:9001" # デバッグ用
+      - "0.0.0.0:8001:8001" # webサーバー
     volumes:
       - ${USER_API_CONTEXT}:/project
       - ../../apps/core/api/base_models:/project/app/core/base_models
@@ -105,7 +105,7 @@ services:
       context: ${USER_FRONT_CONTEXT}
       dockerfile: ${USER_FRONT_DOCKERFILE}
     ports:
-      - "0.0.0.0:3001:3000" # webサーバー
+      - "0.0.0.0:3001:3001" # webサーバー
     volumes:
       - ${USER_FRONT_CONTEXT}:/project
 

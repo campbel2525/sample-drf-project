@@ -1,17 +1,18 @@
 'use client'
 
-import type { validationErrorDetail } from '@/types/responses/base-responses'
-
 interface Props {
-  validationErrors: validationErrorDetail[]
+  validationError: Record<string, string[]>
 }
 
-export default function ValidationErrorMessages({ validationErrors }: Props) {
+export default function ValidationErrorMessages({ validationError }: Props) {
   return (
     <div>
-      {validationErrors.map((error, index) => (
-        <div key={index}>
-          {error.loc[0]}: {error.msg}
+      {Object.entries(validationError).map(([field, errors]) => (
+        <div key={field}>
+          {field}:
+          {errors.map((error, index) => (
+            <div key={index}>{error}</div>
+          ))}
         </div>
       ))}
     </div>

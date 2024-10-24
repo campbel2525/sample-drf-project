@@ -2,7 +2,7 @@ export type LoginRequest = {
   email: string
   password: string
 }
-export type SignUpRequest = {
+export type SignupRequest = {
   email: string
   password: string
   name: string

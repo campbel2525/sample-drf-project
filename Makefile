@@ -92,7 +92,7 @@ check: ## コードフォーマット
 	docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run flake8 .
 	docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run mypy .
 # admin-front
-	docker compose -f $(pf) -p $(pn) exec -it admin-front npx prettier .  --write
+	docker compose -f $(pf) -p $(pn) exec -it admin-front npx prettier . --write
 	docker compose -f $(pf) -p $(pn) exec -it admin-front npx eslint . --fix
 # docker compose -f $(pf) -p $(pn) exec -it admin-front npm run check
 # user-front
@@ -110,11 +110,11 @@ admin-api-run: ## サーバー起動
 
 user-api-run: ## サーバー起動
 # docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run uvicorn main:app --host 0.0.0.0 --reload --port 8000
-	docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run python manage.py runserver 0.0.0.0:8000
+	docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run python manage.py runserver 0.0.0.0:8001
 
 
 admin-front-run: ## サーバー起動
-	docker compose -f $(pf) -p $(pn) exec -it admin-front npm run dev
+	docker compose -f $(pf) -p $(pn) exec -it admin-front npx next dev -p 3000
 
 # admin-front-run-preview: ## サーバー起動
 # 	docker compose -f $(pf) -p $(pn) exec -it admin-front npm run preview
@@ -124,14 +124,14 @@ admin-front-build-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it admin-front sh -c "HOST=0.0.0.0 PORT=3000 node build"
 
 user-front-run: ## サーバー起動
-	docker compose -f $(pf) -p $(pn) exec -it user-front npm run dev
+	docker compose -f $(pf) -p $(pn) exec -it user-front npx next dev -p 3001
 
 # user-front-run-preview: ## サーバー起動
 # 	docker compose -f $(pf) -p $(pn) exec -it user-front npm run preview
 
 user-front-build-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it user-front npm run build
-	docker compose -f $(pf) -p $(pn) exec -it user-front sh -c "HOST=0.0.0.0 PORT=3000 node build"
+	docker compose -f $(pf) -p $(pn) exec -it user-front sh -c "HOST=0.0.0.0 PORT=3001 node build"
 
 # test: ## テスト
 # 	make admin-api-test

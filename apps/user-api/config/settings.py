@@ -52,8 +52,10 @@ INSTALLED_APPS = [
     "corsheaders",
     # 作成したアプリを追加していく
     "app.hc.apps.HcConfig",
-    "app.core.apps.CoreConfig",
     "app.accounts.apps.AccountConfig",
+    "app.orders.apps.OrderConfig",
+    "app.chats.apps.ChatConfig",
+    "app.core.apps.CoreConfig",
     "app.users.apps.UserConfig",
 ]
 
