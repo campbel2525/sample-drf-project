@@ -1,4 +1,4 @@
-## [for english](https://github.com/campbel2525/sample-projects/blob/main/001_drf_project/README-ENGLISH.md)
+## [English README](https://github.com/campbel2525/sample-projects/blob/main/001_drf_project/README-ENGLISH.md)
 
 # 注意
 
